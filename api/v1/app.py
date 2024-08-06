@@ -5,12 +5,16 @@ import os
 from flask import Flask
 from models import storage
 from api.v1.views import app_views
+from flask_cors import CORS
 
 # Create a flask app instance
 app = Flask(__name__)
 
 # Register blueprint
 app.register_blueprint(app_views)
+
+# init cors with app instance
+CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 
 
 # decclare a method for teardown
